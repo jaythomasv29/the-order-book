@@ -17,3 +17,9 @@
 - Utilizing a Component Library / shadcn
 - Building a navbar
   -Light mode / dark mode toggle using theme provider
+
+### Working with React Forms
+
+- React Hook Forms
+- Zod: TypeScript-first schema validation with static type inference
+- Schema Form validation
