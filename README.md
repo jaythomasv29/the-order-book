@@ -20,6 +20,11 @@
 
 ### Working with React Forms
 
-- React Hook Forms
+- React Hook Forms, using Controller, useForm
 - Zod: TypeScript-first schema validation with static type inference
-- Schema Form validation
+- Schema Form validation zodResolver
+
+### Backend / Auth
+
+- Convex BaaS
+- Better Auth

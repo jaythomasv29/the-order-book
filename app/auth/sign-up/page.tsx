@@ -50,7 +50,11 @@ export default function SignUp() {
               render={({ field, fieldState }) => (
                 <Field>
                   <FieldLabel>Full Name</FieldLabel>
-                  <Input placeholder="John Doe" {...field} />
+                  <Input
+                    aria-invalid={fieldState.invalid}
+                    placeholder="John Doe"
+                    {...field}
+                  />
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
@@ -65,6 +69,7 @@ export default function SignUp() {
                 <Field>
                   <FieldLabel>Email</FieldLabel>
                   <Input
+                    aria-invalid={fieldState.invalid}
                     placeholder="johndoe@email.com"
                     type="email"
                     {...field}
@@ -83,6 +88,7 @@ export default function SignUp() {
                 <Field>
                   <FieldLabel>Password</FieldLabel>
                   <Input
+                    aria-invalid={fieldState.invalid}
                     placeholder="Enter a password"
                     type="password"
                     {...field}
