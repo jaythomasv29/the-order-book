@@ -1,8 +1,3 @@
-import { defineApp } from "convex/server";
-import betterAuth from "./convex.config";
+import { defineComponent } from "convex/server";
 
-const app = defineApp();
-
-app.use(betterAuth);
-
-export default app;
+export default defineComponent("betterAuth"); //
