@@ -8,6 +8,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 
+export const dynamic = "force-static";
+// 'auto' | 'force-dynamic' | 'error' | 'force-static'
+export const revalidate = 30;
+// false | 0 | number (in seconds)
+
 export default function BlogPage() {
   return (
     <div className="py-12">

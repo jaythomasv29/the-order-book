@@ -6,6 +6,7 @@ import { fetchMutation } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
 import { redirect } from "next/navigation";
 import { getToken } from "@/lib/auth-server";
+import { revalidatePath } from "next/cache";
 
 // server functions /server actions, creating posts from the server side - runs on the server side
 export async function createBlogAction(values: z.infer<typeof postSchema>) {
@@ -16,7 +17,7 @@ export async function createBlogAction(values: z.infer<typeof postSchema>) {
     }
     const token = await getToken();
     const imageUrl = await fetchMutation(
-      api.posts.generateImageUloadUrl,
+      api.posts.generateImageUploadUrl,
       {},
       { token },
     );
@@ -47,6 +48,7 @@ export async function createBlogAction(values: z.infer<typeof postSchema>) {
       error: "Failed to create post",
     };
   }
-
+  // on demand revalidation
+  revalidatePath("/blog");
   return redirect("/blog");
 }

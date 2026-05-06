@@ -7,7 +7,7 @@
 - child routes
 - Layouts and nested/scoped layout
 - linking
-- routes
+- routes and routing via useRouter()
 - nested routes
 - dynamic routing parameter - params
 
@@ -28,3 +28,12 @@
 
 - Convex BaaS
 - Better Auth
+- Fetching data in Client vs Server Components
+- Server functions & when to use them / tradeoffs
+- Client side rendering vs Server side rendering
+- Querying Convex data
+- Uploading, Storing & Serving
+- Image/File storing
+- Skeletons for dynamic loading
+- Caching
+- Revalidating: time-based & on-demand revalidation
