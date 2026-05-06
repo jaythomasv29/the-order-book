@@ -17,7 +17,7 @@ export function Navbar() {
         {/* Nav Title */}
         <Link href="/">
           <h1 className="text-3xl font-bold">
-            Next<span className="text-blue-500">Pro</span>
+            Next<span className="text-purple-300">Pro</span>
           </h1>
         </Link>
         {/* Nav Links */}

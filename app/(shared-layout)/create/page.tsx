@@ -19,12 +19,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
-import { useMutation } from "convex/react";
-import { api } from "@/convex/_generated/api";
 import { useTransition } from "react";
 import { Loader2 } from "lucide-react";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+
 import { createBlogAction } from "@/app/actions";
 
 export default function CreateRoute() {
@@ -34,23 +31,19 @@ export default function CreateRoute() {
     defaultValues: {
       title: "",
       body: "",
+      image: undefined,
     },
   });
-  const mutation = useMutation(api.posts.createPost);
-  const router = useRouter();
+  // const mutation = useMutation(api.posts.createPost);
+  // const router = useRouter();
 
   function onSubmit(values: z.infer<typeof postSchema>) {
     startTransition(async () => {
-      mutation({ title: values.title, body: values.body });
+      // mutation({ title: values.title, body: values.body });
       console.log("This is from the client");
-      // await createBlogAction();  // server action example
-
-      await fetch("/api/create-blog", {
-        // route handler example
-        method: "POST",
-      });
-      toast.success("Post successfully created");
-      router.push("/");
+      await createBlogAction(values); // server action to create blog post
+      // toast.success("Post successfully created");
+      // router.push("/");
     });
   }
 
@@ -73,7 +66,7 @@ export default function CreateRoute() {
         <CardContent>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <FieldGroup className="gap-y-4">
-              {/* Title */}
+              {/* Title Input */}
               <Controller
                 name="title"
                 control={form.control}
@@ -91,7 +84,7 @@ export default function CreateRoute() {
                   </Field>
                 )}
               />
-              {/* Blog Body */}
+              {/* Blog Body Input */}
               <Controller
                 name="body"
                 control={form.control}
@@ -102,6 +95,29 @@ export default function CreateRoute() {
                       aria-invalid={fieldState.invalid}
                       placeholder="Let's get to blogging"
                       {...field}
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+              {/* File Upload */}
+              <Controller
+                name="image"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field>
+                    <FieldLabel>Image</FieldLabel>
+                    <Input
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Let's get to blogging"
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        field.onChange(file);
+                      }}
                     />
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
